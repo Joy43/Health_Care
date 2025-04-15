@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
-import { PrismaClient } from "@prisma/client";
-import { UserRole } from "../../../generated/prisma";
+import { PrismaClient, UserRole } from "@prisma/client";
+
 
 const prisma = new PrismaClient();
 
@@ -16,9 +16,8 @@ const createAdmin = async (data: any) => {
     const adminData = {
         name: data.admin.name,
         email: data.admin.email,
-        // profilePhoto: data.admin.profilePhoto || null,
         contactNumber: data.admin.contactNumber
-        // include any other required fields
+       
     };
 
     const result = await prisma.$transaction(async (transactionClient) => {

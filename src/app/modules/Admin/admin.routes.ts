@@ -1,14 +1,8 @@
 
 import { PrismaClient } from '@prisma/client';
 import express, { Request,  Response } from 'express';
+import { AdminController } from './admin.controller';
 const router=express.Router();
 const prisma=new PrismaClient
-router.get('/',async(req:Request,res:Response)=>{
-    const result=await prisma.admin.findMany();
-    res.status(200).json({
-        message:"admin data fetched",
-        data:result
-    })
-
-});
+router.get('/',AdminController.getAllFromDB);
 export const AdminRoutes=router;

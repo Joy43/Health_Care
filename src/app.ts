@@ -9,14 +9,15 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-
+// ------------- root route--------
 app.get('/ ', (req: Request, res: Response) => {
 res.send({
     Message:"health care server --start"
 })
 });
 
-app.use('/api/v1/user',userRoutes)
-app.use('/api/v1/admin',AdminRoutes)
+// --------------route-------------
+app.use('/api/v1/user',userRoutes);
+app.use('/api/v1/admin',AdminRoutes);
 
 export default app;
