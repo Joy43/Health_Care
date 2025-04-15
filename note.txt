@@ -1,0 +1,15 @@
+yarn init -y
+yarn add  prisma typescript tsx @types/node -D
+npx tsc --init
+npx prisma
+npx prisma init
+yarn add express
+yarn add ts-node-dev -D 
+yarn add cors
+ yarn add @types/express -D
+ ts-node-dev --respawn --transpile-only server.ts
+ yarn add @types/cors -D
+ yarn add @prisma/client
+ npx prisma migrate dev
+ যদি schema তে কিছু পরিবর্তন করো, তবে এটা দাও:
+ npx prisma db push
