@@ -29,7 +29,9 @@ const calculatePagination = (options: IOptions): IOptionsResult => {
         sortBy,
         sortOrder
     }
-}
+};
+
+
 
 
 export const paginationHelper = {

@@ -1,7 +1,11 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { userService } from "./user.service";
+import sendResponse from "../../shared/sendResponse";
+import status from "http-status";
 
-const createAdmin=async(req:Request,res:Response)=>{
+
+// -----------create admin----------------
+const createAdmin=async(req:Request,res:Response,next:NextFunction)=>{
     console.log(req.body)
     console.log('user controller');
    try{
@@ -11,14 +15,8 @@ const createAdmin=async(req:Request,res:Response)=>{
       messsage:'Admin create successfuly',
       data:result
     })
-   }catch(err:any){
-    res.status(500).json(
-    {
-        sucess:false,
-        message:err?.name || "something is wrong",
-        err:err
-    }
-    )
+}catch(err:any){
+    next (err)
    }
 };
 export const userController={
