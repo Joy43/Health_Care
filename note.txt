@@ -13,3 +13,16 @@ yarn add cors
  npx prisma migrate dev
  যদি schema তে কিছু পরিবর্তন করো, তবে এটা দাও:
  npx prisma db push
+
+
+ -------token create jwt--
+ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+ openssl rand -hex 32
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+--------------nodemailer-----------
+yarn add nodemailer
+yarn add -D typescript @types/nodemailer
+
+
+

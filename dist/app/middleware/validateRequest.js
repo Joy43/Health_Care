@@ -8,17 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = __importDefault(require("./app"));
-const port = 5000;
-function main() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const server = app_1.default.listen(port, () => {
-            console.log("server is running now port", `http://localhost:${port}`);
+const validateRequest = (schema) => (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield schema.parseAsync({
+            body: req.body
         });
-    });
-}
-main();
+        return next();
+    }
+    catch (err) {
+        next(err);
+    }
+});
+exports.default = validateRequest;

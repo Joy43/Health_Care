@@ -6,27 +6,24 @@ import pick from "../../shared/pick";
 import sendResponse from "../../shared/sendResponse";
 import status from "http-status";
 import catchAsync from "../../shared/catchAsync";
-const getAllFromDB=async(req:Request,res:Response)=>{
-    try{
-      const filters=  pick(req.query,adminFilterableFields);
-      const options=pick(req.query,['limit','page','sortBy','sortOrder'])
-      console.log(options)
-        const result=await adminService.getAllFromDB(filters,options);
-    console.log(options);
+const getAllFromDB=catchAsync(
+    async(req:Request,res:Response)=>{
  
-    res.status(200).json({
-        message:"admin data fetched",
-        meta:result.meta,
-        data:result.data
-    });
-    }catch(err:any){
-    res.status(500).json({
-   success:false,
-   message:err.name,
-   err:err
-    }
-)}
-};
+        const filters=  pick(req.query,adminFilterableFields);
+        const options=pick(req.query,['limit','page','sortBy','sortOrder'])
+        console.log(options)
+          const result=await adminService.getAllFromDB(filters,options);
+      console.log(options);
+   
+      res.status(200).json({
+          message:"admin data fetched",
+          meta:result.meta,
+          data:result.data
+      });
+      }
+
+)
+
 
 // ----------------getbyid-----------------
 
@@ -43,12 +40,12 @@ const getByIdFromDB = catchAsync(async (req: Request, res: Response) => {
 })
 
 
-// ---------------update data---
-const UpdateAdminFromDB=async(req:Request,res:Response)=>{
+// ---------------update data-----------------
+const UpdateAdminFromDB=catchAsync(async(req:Request,res:Response)=>{
     const {id}=req.params;
     console.log('id',id);
     console.log('data:',req.body);
-   try{
+  
     const result=await adminService.getByIdFromDB(id);
     res.status(200).json({
         success:true,
@@ -56,14 +53,8 @@ const UpdateAdminFromDB=async(req:Request,res:Response)=>{
         meta:result,
         data:result
     })
-   } catch(err:any){
-    res.status(500).json({
-        success:false,
-        message:err?.name || 'something worng',
-        err:err
-    })
-};
-};
+   } )
+
 // --------delete from db---------
 const deleteFromDB=async(req:Request,res:Response)=>{
     const {id}=req.params;

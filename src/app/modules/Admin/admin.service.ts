@@ -3,12 +3,14 @@ import { equal } from "assert";
 import { paginationHelper } from "../../helpars/PaginationHelper";
 import { adminSearchableFields } from "./admin.constant";
 import prisma from "../../shared/prisma";
+import { IAdminFilterRequest } from "./admin.interface";
+import { IPaginationOptions } from "../../interface/pagination";
 
 
 
 
 
-const getAllFromDB=async(params:any,options:any)=>{
+const getAllFromDB=async(params:IAdminFilterRequest,options:IPaginationOptions)=>{
     const {limit,page,skip}=paginationHelper.calculatePagination(options);
     const{searchTerm,...filterData}=params;
     const andCondions:Prisma.AdminWhereInput[]=[];
@@ -31,7 +33,7 @@ const getAllFromDB=async(params:any,options:any)=>{
         andCondions.push({
             AND:Object.keys(filterData).map(key => ({
                 [key]: {
-                    equals: filterData[key]
+                    equals: (filterData as any)[key]
                 }
             }))
         })
@@ -137,7 +139,7 @@ await prisma.admin.findUniqueOrThrow({
 // ----------soft delete--------
 const SoftDeleteFromDB=async(id:string):Promise<Admin | null> =>{
     
-    // error handle not found id
+    // ------------ error handle not found id -------------------
 await prisma.admin.findUniqueOrThrow({
     where:{
         id,
@@ -145,7 +147,7 @@ await prisma.admin.findUniqueOrThrow({
     }
 });
     const result=await prisma.$transaction(async(transtionClient)=>{
-        // -------admin
+        // -------admin--------------
         const adminDeletedData=await transtionClient.admin.update({
             where:{
                 id

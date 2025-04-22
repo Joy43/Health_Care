@@ -8,17 +8,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = __importDefault(require("./app"));
-const port = 5000;
-function main() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const server = app_1.default.listen(port, () => {
-            console.log("server is running now port", `http://localhost:${port}`);
+exports.userController = void 0;
+const user_service_1 = require("./user.service");
+// -----------create admin----------------
+const createAdmin = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
+    console.log('user controller');
+    try {
+        const result = yield user_service_1.userService.createAdmin(req.body);
+        res.status(200).json({
+            status: true,
+            messsage: 'Admin create successfuly',
+            data: result
         });
-    });
-}
-main();
+    }
+    catch (err) {
+        next(err);
+    }
+});
+exports.userController = {
+    createAdmin
+};
