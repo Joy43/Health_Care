@@ -1,25 +1,40 @@
 import express, { NextFunction, Request, Response, Router }  from "express";
 import { userController } from "./user.controller";
-import { jwtHelpers } from "../../helpars/jwthelpar";
-import config from "../../../config";
-import { Secret } from "jsonwebtoken";
 import auth from "../../middleware/auth";
 import { UserRole } from "@prisma/client";
-import validateRequest from "../../middleware/validateRequest";
-import { adminValidationSchemas } from "../Admin/adminValidation";
-import { AdminController } from "../Admin/admin.controller";
+import { fileUploader } from "../../helpars/fileUploader";
+import { userValidation } from "./userValidation";
 
 const router=express.Router();
 
-router.get("/",auth(UserRole.SUPER_ADMIN),
-userController.createAdmin);
-router.post("/",auth(UserRole.ADMIN,UserRole.SUPER_ADMIN),
-userController.createAdmin);
-router.patch(
-    '/:id',auth(UserRole.ADMIN,UserRole.SUPER_ADMIN),
-    validateRequest(adminValidationSchemas.update),
-    AdminController.UpdateAdminFromDB
+
+// ------------create admin---------
+router.post(
+    "/create-admin",
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    fileUploader.upload.single('file'),
+    (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received File:", req.file);
+        console.log("Raw Body Data:", req.body);
+        req.body = userValidation.createAdmin.parse(JSON.parse(req.body.data))
+        console.log("Parsed Body:", req.body);
+        return userController.createAdmin(req, res, next)
+    }
 );
 
-router.delete(':id',auth(UserRole.ADMIN,UserRole.SUPER_ADMIN),AdminController.deleteFromDB);
+// ------------create doctor---------
+router.post(
+    "/create-admin",
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+    fileUploader.upload.single('file'),
+    (req: Request, res: Response, next: NextFunction) => {
+        console.log("Received File:", req.file);
+        console.log("Raw Body Data:", req.body);
+        req.body = userValidation.createAdmin.parse(JSON.parse(req.body.data))
+        console.log("Parsed Body:", req.body);
+        return userController.createAdmin(req, res, next)
+    }
+);
+
+
 export const userRoutes=router;

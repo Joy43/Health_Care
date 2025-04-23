@@ -24,5 +24,10 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 yarn add nodemailer
 yarn add -D typescript @types/nodemailer
 
+---------directory path declare show----------
+pwd
+------------image function---------
+yarn add  multer
+yarn add @types/multer -D
 
-
+https://github.com/Apollo-Level2-Web-Dev/B4-PH-Health-Care/tree/part-5
