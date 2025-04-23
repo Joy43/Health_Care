@@ -23,7 +23,7 @@ const createAdmin = z.object({
 // --------------create doctor validation-----------
 const createDoctor = z.object({
     password: z.string({
-        required_error: "Password is required"
+   required_error: "Password is required"
     }),
     doctor: z.object({
         name: z.string({
@@ -55,10 +55,29 @@ const createDoctor = z.object({
         })
     })
 });
-
+// -------create patient--------
+const createPatient = z.object({
+    password: z.string(),
+    patient: z.object({
+      email: z.string({
+        required_error: "Email is required!"
+      }).email(),
+      name: z.string({
+        required_error: "Name is required!"
+      }),
+      contactNumber: z.string({
+        required_error: "Contact number is required!"
+      }),
+      address: z.string({
+        required_error: "Address is required"
+      })
+    })
+  });
+  
 export const userValidation = {
     createAdmin,
-    createDoctor
+    createDoctor,
+    createPatient
   
     
 }

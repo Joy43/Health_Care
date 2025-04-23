@@ -5,10 +5,7 @@ import { adminSearchableFields } from "./admin.constant";
 import prisma from "../../shared/prisma";
 import { IAdminFilterRequest } from "./admin.interface";
 import { IPaginationOptions } from "../../interface/pagination";
-
-
-
-
+// ---------------get all admin-------------
 
 const getAllFromDB=async(params:IAdminFilterRequest,options:IPaginationOptions)=>{
     const {limit,page,skip}=paginationHelper.calculatePagination(options);
