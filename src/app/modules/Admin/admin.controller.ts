@@ -6,6 +6,7 @@ import pick from "../../shared/pick";
 import sendResponse from "../../shared/sendResponse";
 import status from "http-status";
 import catchAsync from "../../shared/catchAsync";
+import { IAuthUser } from "../../interface/authuser";
 const getAllFromDB=catchAsync(
     async(req:Request,res:Response)=>{
  
@@ -78,7 +79,7 @@ const deleteFromDB=async(req:Request,res:Response)=>{
 };
 
 // ----------SOFT DELETE----------------
-const SoftdeleteFromDB=async(req:Request,res:Response)=>{
+const SoftdeleteFromDB=async(req:Request &{user?:IAuthUser},res:Response)=>{
     const {id}=req.params;
     try{
         const result=await adminService.SoftDeleteFromDB(id);

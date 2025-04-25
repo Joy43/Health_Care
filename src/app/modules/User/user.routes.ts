@@ -4,14 +4,21 @@ import auth from "../../middleware/auth";
 import { UserRole } from "@prisma/client";
 import { fileUploader } from "../../helpars/fileUploader";
 import { userValidation } from "./userValidation";
+import validateRequest from "../../middleware/validateRequest";
 
 const router=express.Router();
 
 
-// ------------create admin---------
-// -------get upper is betterposition----------
-router.get('/',userController.getAllFromDB)
 
+// -------get upper is betterposition----------
+router.get('/',userController.getAllFromDB);
+// ---------myprofile--------
+router.get('/myprofile',
+    auth(UserRole.ADMIN,UserRole.DOCTOR,UserRole.PATIENT,UserRole.SUPER_ADMIN),
+    userController.getMyProfile);
+
+
+// ------------create admin---------
 router.post(
     "/create-admin",
     auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
@@ -24,6 +31,7 @@ router.post(
         return userController.createAdmin(req, res, next)
     }
 );
+
 
 // ------------create doctor---------
 router.post(
@@ -52,5 +60,23 @@ router.post(
     }
 );
 
+//---------------- profile status-------
+router.patch(
+    '/:id/status',
+    validateRequest(userValidation.updatestatusUser),
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+   
+    userController.changeProfileStatus
+);
+// ---------update profile---------
+router.patch(
+    "/update-my-profile",
+    auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.DOCTOR, UserRole.PATIENT),
+    fileUploader.upload.single('file'),
+    (req: Request, res: Response, next: NextFunction) => {
+        req.body = JSON.parse(req.body.data)
+        return userController.updateMyProfile(req, res, next)
+    }
+);
 
 export const userRoutes=router;
