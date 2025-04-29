@@ -4,6 +4,7 @@ import { AdminRoutes } from '../modules/Admin/admin.routes';
 import { AuthRoutes } from '../modules/Auth/auth.routes';
 import { specialtiesRoutes } from '../modules/Specialties/specialties.routes';
 import { doctorRoutes } from '../modules/Doctor/doctor.routes';
+import { PatientRoutes } from '../modules/patient/patient.routes';
 
 
 const router=exprss.Router();
@@ -28,6 +29,10 @@ const moduleRoutes=[
     {
         path:'/doctor',
         route:doctorRoutes 
+    },
+    {
+        path:'/patient',
+        route:PatientRoutes
     }
   
   
