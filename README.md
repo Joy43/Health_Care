@@ -12,12 +12,12 @@ EXPIRES_IN=15d
 REFRESH_TOKEN_SECRET=91b4bb99b4d3a0b0e50d9081fa871cc0bc1dcb372c03af4733134baba6d6fc74f8ecb208d49bd02f52fd799b1c91e0a9a0b88add4002bdcd13a85a76319818ed
 REFRESH_TOKEN_EXPIRES_IN=6h
 
-# Password reset token and expiration
+# Password reset token and expiration time
 RESET_PASS_TOKEN="123ER556656565777657"
 RESET_PASS_TOKEN_EXPIRES_IN="5m"
 RESET_PASS_LINK=http://localhost:5000/reset-password
 
-# Email settings for SMTP
-EMAIL=example@gmail.com
-app_pass=sqyi bgm
+# SMTP and email credentials (used for sending password reset emails, etc.)
+EMAIL=ssjoy370@gmail.com
+app_pass=sqyi bgmh ckam oxis
 SMTP_PORT=587
