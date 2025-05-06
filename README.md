@@ -30,6 +30,6 @@ RESET_PASS_LINK=http://localhost:5000/reset-password
 # -----------------------------------------
 # Email/SMTP Configuration
 # -----------------------------------------
-EMAIL=ssjoy370@gmail.com
-app_pass=sqyi bgmh ckam oxis
+EMAIL=ss@gmail.com
+app_pass=sqyi bgmh ckau oxis
 SMTP_PORT=587

@@ -1,15 +1,17 @@
-import prisma from "../../shared/prisma"
+import express from 'express';
+import auth from '../../middleware/auth';
+import validateRequest from '../../middleware/validateRequest';
+import { DoctorScheduleController } from './doctorSchedule.controller';
+import { DoctorScheduleValidation } from './doctorSchedule.validation';
+import { UserRole } from '@prisma/client';
+const router=express.Router();
 
-const inserIntoDB=async(user:any,payload:{
+// -------------create doctor validation------------
+router.post(
+    '/',
+    auth(UserRole.DOCTOR),
+    validateRequest(DoctorScheduleValidation.create),
+    DoctorScheduleController.insertIntoDB
+);
 
-})=>{
-    const doctorData=await prisma.doctor.findUniqueOrThrow({
-        where:{
-            email:user.email
-        }
-    });
-    const doctorScheduleData=payload.scheduleIds.map(scheduleId=>{
-        doctorId:doctorData.id,
-        scheduleId
-    })
-}
+export const doctorScheduleRoutes=router;

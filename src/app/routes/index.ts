@@ -6,6 +6,8 @@ import { specialtiesRoutes } from '../modules/Specialties/specialties.routes';
 import { doctorRoutes } from '../modules/Doctor/doctor.routes';
 import { PatientRoutes } from '../modules/patient/patient.routes';
 import { scheduleRoutes } from '../modules/Schedule/schedule.route';
+import { doctorScheduleRoutes } from '../modules/DoctorSchedule/doctorSchedule.routes';
+import { AppoinmentRoutes } from '../modules/Appointment/appoinment.routes';
 
 
 const router=exprss.Router();
@@ -39,6 +41,14 @@ const moduleRoutes=[
         path:'/schedule',
         route:scheduleRoutes
     },
+    {
+        path:'/doctor-schedule',
+        route:doctorScheduleRoutes
+    },
+    {
+        path:'/appoinment',
+        route:AppoinmentRoutes
+    }
 
   
   
