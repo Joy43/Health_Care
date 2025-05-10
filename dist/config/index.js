@@ -20,7 +20,8 @@ exports.default = {
     reset_pass_link: process.env.RESET_PASS_LINK,
     emailSender: {
         email: process.env.EMAIL,
-        app_pass: process.env.APP_PASS
+        app_pass: process.env.APP_PASS,
+        smtp_port: process.env.SMTP_PORT
     },
     ssl: {
         storeId: process.env.STORE_ID,

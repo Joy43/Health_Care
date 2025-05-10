@@ -9,6 +9,7 @@ import { scheduleRoutes } from '../modules/Schedule/schedule.route';
 
 import { AppoinmentRoutes } from '../modules/Appointment/appoinment.routes';
 import { DoctorScheduleRoutes } from '../modules/DoctorSchedule/doctorSchedule.routes';
+import { PaymentRoutes } from '../modules/Payment/payment.routes';
 
 
 const router=exprss.Router();
@@ -49,7 +50,12 @@ const moduleRoutes=[
     {
         path:'/appoinment',
         route:AppoinmentRoutes
-    }
+    },
+    {
+        path:'/payment',
+        route:PaymentRoutes
+    },
+
 
   
   

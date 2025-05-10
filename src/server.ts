@@ -9,6 +9,7 @@ async function main() {
         console.log("server is running now port",`http://localhost:${port}`)
     })
     
-}
+};
+
 
 main();

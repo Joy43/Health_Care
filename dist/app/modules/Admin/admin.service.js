@@ -28,6 +28,7 @@ const client_1 = require("@prisma/client");
 const PaginationHelper_1 = require("../../helpars/PaginationHelper");
 const admin_constant_1 = require("./admin.constant");
 const prisma_1 = __importDefault(require("../../shared/prisma"));
+// ---------------get all admin-------------
 const getAllFromDB = (params, options) => __awaiter(void 0, void 0, void 0, function* () {
     const { limit, page, skip } = PaginationHelper_1.paginationHelper.calculatePagination(options);
     const { searchTerm } = params, filterData = __rest(params, ["searchTerm"]);

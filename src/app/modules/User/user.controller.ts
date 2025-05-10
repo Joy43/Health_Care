@@ -1,4 +1,13 @@
 import { Request, Response } from "express";
+
+// Extend the Request interface to include the 'user' property
+declare global {
+  namespace Express {
+    interface Request {
+      user?: IAuthUser;
+    }
+  }
+}
 import { userService } from "./user.service";
 import sendResponse from "../../shared/sendResponse";
 import status from "http-status";
