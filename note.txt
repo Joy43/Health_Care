@@ -30,10 +30,12 @@ pwd
 yarn add  multer
 yarn add @types/multer -D
 
-https://github.com/Apollo-Level2-Web-Dev/B4-PH-Health-Care/blob/part-10
+https://github.com/Apollo-Level2-Web-Dev/B4-PH-Health-Care/blob/part-11
 -----------------
 https://doctime.com.bd/
 
 -------live er diagram-----------
 https://prismaliser.app/
 yarn add --save-dev @types/sslcommerz -D
+
+Merchant Panel URL: https://sandbox.sslcommerz.com/manage

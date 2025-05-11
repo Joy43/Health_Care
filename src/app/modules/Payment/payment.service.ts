@@ -51,9 +51,9 @@ const validatePayment = async (payload: any) => {
     //         message: "Payment Failed!"
     //     }
     // }
-
+// ----------developer  payment gateway response----------
     const response = payload;
-
+// -------------------ssl commerz response-------------------
     await prisma.$transaction(async (tx) => {
         const updatedPaymentData = await tx.payment.update({
             where: {
@@ -64,7 +64,7 @@ const validatePayment = async (payload: any) => {
                 paymentGatewayData: response
             }
         });
-
+// --------appointment update---------
         await tx.appointment.update({
             where: {
                 id: updatedPaymentData.appointmentId
@@ -74,7 +74,7 @@ const validatePayment = async (payload: any) => {
             }
         })
     });
-
+// --------message for sucessfull payment---------
     return {
         message: "Payment success!"
     }

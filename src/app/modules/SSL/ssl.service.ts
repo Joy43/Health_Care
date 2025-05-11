@@ -54,7 +54,7 @@ const initPayment = async (paymentData: IPaymentData) => {
     }
 };
 
-
+// -------------validate payment-----------------
 const validatePayment = async (payload: any) => {
     try {
         const response = await axios({
