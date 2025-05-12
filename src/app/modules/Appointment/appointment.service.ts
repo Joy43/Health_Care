@@ -4,7 +4,7 @@ import prisma from "../../shared/prisma"
 import { v4 as uuidv4 } from 'uuid';
 import { IPaginationOptions } from "../../interface/pagination";
 import { paginationHelper } from "../../helpars/PaginationHelper";
-import { Prisma, UserRole } from "@prisma/client";
+import { AppointmentStatus, Prisma, UserRole } from "@prisma/client";
 // --------------appointment service create----------------
 const createAppointment=async(user:IAuthUser,payload:any ) =>{
     const patientData = await prisma.patient.findUniqueOrThrow({
@@ -204,9 +204,18 @@ const getAllFromDB = async (
         data: result,
     };
 };
-
+// --------change4 appointment status--------
+const changeAppointmentStatus = async (appiontmentId:string,status:AppointmentStatus) => {
+console.log("status",status)
+const appointmentData=await prisma.appointment.findFirstOrThrow({
+    where:{
+        id:appiontmentId
+    }
+})
+}
 export const AppointmentService={
     createAppointment,
     getMyAppointment,
-    getAllFromDB
+    getAllFromDB,
+    changeAppointmentStatus
 }

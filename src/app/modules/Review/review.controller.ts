@@ -12,5 +12,7 @@ const user=req.params;
         sucess: true,
         message: 'Review created successfully',
         data: result,
-    });
+    })
 });
+
+export const ReviewController = {insertIntoDB}
