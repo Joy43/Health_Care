@@ -10,6 +10,7 @@ import { scheduleRoutes } from '../modules/Schedule/schedule.route';
 import { AppoinmentRoutes } from '../modules/Appointment/appoinment.routes';
 import { DoctorScheduleRoutes } from '../modules/DoctorSchedule/doctorSchedule.routes';
 import { PaymentRoutes } from '../modules/Payment/payment.routes';
+import { PrescriptionRoutes } from '../modules/Prescription/prescription.routes';
 
 
 const router=exprss.Router();
@@ -55,6 +56,10 @@ const moduleRoutes=[
         path:'/payment',
         route:PaymentRoutes
     },
+    {
+        path:'/prescription',
+        route:PrescriptionRoutes
+    }
 
 
   
