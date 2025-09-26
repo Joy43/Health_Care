@@ -1,0 +1,23 @@
+name: Car Shop Frontend Application
+
+on: 
+  push:
+  workflow_dispatch:
+
+jobs:
+  test-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.15
+
+      - name: npm dependencies
+        run: npm install --frozen-lockfile
+
+      - name: Build project
+        run: npm build
